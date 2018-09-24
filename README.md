@@ -1,6 +1,6 @@
 # .files
 
-These are my dotfiles. Take anything you want, but at your own risk.
+These are webpro's dotfiles. Take anything you want, but at your own risk.
 
 It targets macOS systems, but it should work on *nix as well (tested on a few Linux boxes and Ubuntu 16).
 
