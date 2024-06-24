@@ -1,23 +1,30 @@
+# Change working directory to the top-most Finder window location
+
+function cdf() {
+	cd "$(osascript -e 'tell app "Finder" to POSIX path of (insertion location as alias)')";
+}
+
+# Dev
+
+d() {
+  $VISUAL ${1:-.}
+  $VISUAL_GIT ${1:-.}
+}
+
 # Open man page as PDF
 
 manpdf() {
   man -t "$1" | open -f -a /Applications/Preview.app/
 }
 
-# Dev
 
-d() {
-  $DOTFILES_IDE ${1:-.}
-  $DOTFILES_GIT_GUI ${1:-.}
-}
+# Get Bundle ID of macOS app
+# Example: bundleid terminal
 
-# Open query in Dash app
-
-dash() {
-  case $# in
-    1) QUERY="$1";;
-    2) QUERY="$1:$2";;
-    *) echo "Usage: dash [docset] query"; return 1;
-  esac
-  open "dash://$QUERY"
+bundleid() {
+  local ID=$( osascript -e 'id of app "'"$1"'"' )
+  if [ ! -z $ID ]; then
+    echo $ID | tr -d '[:space:]' | pbcopy
+    echo "$ID (copied to clipboard)"
+  fi
 }
